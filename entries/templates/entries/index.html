@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Memoir of events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
+
+    <style>
+        #ABC {
+          background-color:#5D6D7E  ;
+          border: 1px #85929E;
+        }
+     
+      </style>
+</head>
+
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body" id="ABC">
+            <div class="container">
+                <h1 class="title">
+                    Memoir of Events
+                </h1> 
+                {% if user.is_authenticated %}
+                <p style="text-align:right;">Hello, {{user.username}}   &nbsp &nbsp &nbsp <a href="logout">Logout</a></p>
+                    {% endif %}
+
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <article class="media">
+                <div class="media-content">
+                    <div class="content">
+                        <a href="{% url 'add' %}">Add new entry</a>
+                    </div>
+                </div>
+            </article>
+
+            {% for entry in entries %}
+                <article class="media">
+                    <div class="media-content">
+                        <div class="content" >
+                            <p>
+                                <a href="http://127.0.0.1:8000/viewdiary/{{entry.id}}"> 
+                                <strong>{{entry.Heading}}: {{ entry.date_posted }}</strong>
+                                </a>
+                              
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+
+        </div>
+
+    </section>
+    <footer class="footer">
+    </footer>
+</body>
+
+</html>
